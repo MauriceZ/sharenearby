@@ -1,0 +1,9 @@
+<template name="mainChat">
+  <div>
+    {{ #each posts }}
+      <p>{{ body }}</p>
+    {{ /each }}
+  </div>
+
+  {{ > quickForm collection="Posts" id="main-form" type="method" meteormethod="submitPost" }}
+</template>
