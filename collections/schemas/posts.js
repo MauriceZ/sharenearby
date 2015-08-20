@@ -1,8 +1,8 @@
 var postFields = {
   _id: {
-    type: String,
-    optional: true,
-    autoform: {
+    'type': String,
+    'optional': true,
+    'autoform': {
       omit: true
     }
   },
@@ -10,34 +10,37 @@ var postFields = {
   body: {
     type: String,
     autoform: {
-      label: false,
-      autofocus: '',
-      placeholder: 'Your text',
-      type: 'textarea',
-      rows: 5
+      'label': false,
+      'autofocus': '',
+      'optional': true,
+      'placeholder': '',
+      'class': 'chat-input',
+      'formgroup-class': 'chat-input-container col-md-10',
+      'type': 'textarea',
+      'rows': 5
     }
   },
 
   userId: {
-    type: String,
-    optional: true,
-    autoform: {
+    'type': String,
+    'optional': true,
+    'autoform': {
       omit: true
     }
   },
 
   ipAddress: {
-    type: String,
-    optional: true,
-    autoform: {
+    'type': String,
+    'optional': true,
+    'autoform': {
       omit: true
     }
   },
 
   createdAt: {
-    type: Date,
-    optional: true,
-    autoform: {
+    'type': Date,
+    'optional': true,
+    'autoform': {
       omit: true
     }
   }

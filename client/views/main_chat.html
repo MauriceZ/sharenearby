@@ -1,9 +1,48 @@
 <template name="mainChat">
-  <div>
-    {{ #each posts }}
-      <p>{{ body }}</p>
-    {{ /each }}
-  </div>
+  <section class="row chat-posts-section">
+    <div class="chat-posts-container">
+      {{ #each posts }}
+        <div class="chat-post-container">
+  
+          <div class="chat-post">
+            <div class="chat-color-container">
+              <div class="chat-color"></div>
+            </div>
+  
+            <div class="chat-body-container">
+              <p class="chat-time">{{ formattedDate }}</p>
+              <p class="chat-body">{{ body }}</p>
+            </div>
+          </div>
+  
+        </div>
+      {{ /each }}
+    </div>
+  </section>
+  
+  <section class="row chat-input-section">
+    {{ #autoForm collection="Posts" id="chat-form" type="method" meteormethod="submitPost" }}
+      <div class="chat-btns-container col-md-1">
+        <div class="chat-btn-inner-container">
 
-  {{ > quickForm collection="Posts" id="main-form" type="method" meteormethod="submitPost" }}
+          <button type="button" class="chat-btn button button-green">
+            <i class="fa fa-unlock-alt chat-btn-icon-lock"></i>
+            <p class="chat-btn-text chat-btn-text-password">Password</p>
+          </button>
+
+          <button type="button" class="chat-btn button button-orange">
+            <i class="fa fa-file-text"></i>
+            <p class="chat-btn-text">File</p>
+          </button>
+
+        </div>
+      </div>
+
+      {{> afQuickField name='body'}}
+      
+      <div class="chat-submit-container col-md-1">  
+        <button type="submit" class="chat-submit button button-blue">Send</button>
+      </div>
+    {{ /autoForm }}
+  </section>
 </template>

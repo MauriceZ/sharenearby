@@ -1,0 +1,22 @@
+.vertical-center-block() {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.gradient-background(@light, @normal, @dark) {
+  // http://www.cssmatic.com/gradient-generator#'\-moz\-linear\-gradient\%28top\%2C\%20rgba\%28146\%2C205\%2C221\%2C1\%29\%200\%25\%2C\%20rgba\%28117\%2C189\%2C209\%2C1\%29\%2026\%25\%2C\%20rgba\%2874\%2C166\%2C191\%2C1\%29\%20100\%25\%29\%3B'
+  background: @light;
+  background: -moz-linear-gradient(180deg, @light 0%, @normal 26%, @dark 100%);
+  background: -webkit-gradient(left 180deg, left bottom, color-stop(0%, @light), color-stop(26%, @normal), color-stop(100%, @dark));
+  background: -webkit-linear-gradient(180deg, @light 0%, @normal 26%, @dark 100%);
+  background: -o-linear-gradient(180deg, @light 0%, @normal 26%, @dark 100%);
+  background: -ms-linear-gradient(180deg, @light 0%, @normal 26%, @dark 100%);
+  background: linear-gradient(180deg, @light 0%, @normal 26%, @dark 100%);
+}
+
+.gradient-button {
+  background: linear-gradient(180deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.3) 100%);
+}
