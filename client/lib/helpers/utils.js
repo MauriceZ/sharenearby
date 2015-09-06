@@ -12,6 +12,7 @@ Meteor.utils = {
   },
 
   scrollToBottom: function($elem) {
-    $elem[0].scrollTop = $elem[0].scrollHeight;
+    if ($elem[0])
+      $elem[0].scrollTop = $elem[0].scrollHeight;
   }
 };

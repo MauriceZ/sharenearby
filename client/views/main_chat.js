@@ -32,8 +32,6 @@ Template.mainChat.onRendered(function() {
       if (Meteor.subscriptions.posts.ready()) {
 
         if (!Meteor.recentPostSentByUser) {
-          Meteor.recentPostSentByUser = false;
-
           var $previousNewestPost = $('.chat-post-container').eq(-2),
               inputSectionHeight = $('.chat-input-section').height();
           
@@ -44,13 +42,15 @@ Template.mainChat.onRendered(function() {
           }
         }
 
+        Meteor.recentPostSentByUser = false;
+
       }
     }
   });
 });
 
 function scrollToBottom() {
-  Meteor.utils.scrollToBottom($('.chat-post-container'));
+  Meteor.utils.scrollToBottom($('.chat-posts-container'));
 }
 
 function notifyNewMessage() {
