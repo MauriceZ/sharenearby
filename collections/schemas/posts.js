@@ -9,16 +9,6 @@ var postFields = {
 
   body: {
     type: String,
-    autoform: {
-      'label': false,
-      'autofocus': '',
-      'optional': true,
-      'placeholder': '',
-      'class': 'chat-input',
-      'formgroup-class': 'chat-input-container col-md-10',
-      'type': 'textarea',
-      'rows': 5
-    }
   },
 
   userId: {
