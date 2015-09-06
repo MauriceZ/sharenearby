@@ -17,10 +17,12 @@
   
         </div>
       {{ /each }}
+
     </div>
   </section>
   
   <section class="row chat-input-section">
+    <div class="new-msg-notification">New message <i class="fa fa-angle-double-down"></i></div>
     {{ #autoForm collection="Posts" id="chat-form" type="method" meteormethod="submitPost" }}
       <div class="chat-btns-container col-md-1">
         <div class="chat-btn-inner-container">
