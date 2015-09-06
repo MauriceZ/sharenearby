@@ -11,6 +11,19 @@ Template.mainChat.helpers({
   }
 });
 
+Template.mainChat.events = {
+  'click .new-msg-notification': function() {
+    scrollToBottom();
+  },
+
+  'keypress .chat-input': function(e) {
+    if (e.keyCode == 13 && !e.ctrlKey) {
+      e.preventDefault();
+      $('#chat-form').submit();
+    }
+  }
+};
+
 Template.mainChat.onRendered(function() {
   scrollToBottom();
 
@@ -35,12 +48,6 @@ Template.mainChat.onRendered(function() {
     }
   });
 });
-
-Template.mainChat.events = {
-  'click .new-msg-notification': function() {
-    scrollToBottom();
-  }
-};
 
 function scrollToBottom() {
   Meteor.utils.scrollToBottom($('.chat-post-container'));
