@@ -1,24 +1,33 @@
 <template name="mainChat">
   <section class="row chat-posts-section">
-    <div class="chat-posts-container">
-      {{ #each posts }}
-        <div class="chat-post-container">
-  
-          <div class="chat-post">
-            <div class="chat-color-container">
-              <div class="chat-color"></div>
-            </div>
-  
-            <div class="chat-body-container">
-              <p class="chat-time">{{ formattedDate }}</p>
-              <p class="chat-body">{{ body }}</p>
-            </div>
-          </div>
-  
-        </div>
-      {{ /each }}
+    {{ #if posts.count }}
 
-    </div>
+      <div class="chat-posts-container">
+
+          {{ #each posts }}
+            <div class="chat-post-container">
+      
+              <div class="chat-post">
+                <div class="chat-color-container">
+                  <div class="chat-color"></div>
+                </div>
+      
+                <div class="chat-body-container">
+                  <p class="chat-time">{{ formattedDate }}</p>
+                  <p class="chat-body">{{{ body }}}</p>
+                </div>
+              </div>
+      
+            </div>
+          {{ /each }}
+
+      </div>
+
+    {{ else }}
+
+      <div class="chat-posts-empty">Nothing here yet</div>
+
+    {{ /if }}
   </section>
   
   <section class="row chat-input-section">
