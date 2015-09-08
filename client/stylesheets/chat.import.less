@@ -139,7 +139,12 @@
   margin-top: -4px;
 }
 
+.file-input-form {
+  display: none;
+}
+
 .chat-input-container {
+  position: relative;
   display: inline-block;
   margin: 0;
   height: 100%;
@@ -161,6 +166,37 @@
   box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.1);
 
   .vertical-center-block();
+}
+
+.file-uploading-block {
+  position: absolute;
+  margin-top: -10px;
+  height: 26px;
+  line-height: 25px;
+  min-width: 160px;
+  padding: 0 5px;
+  border: 1px solid rgb(190, 190, 190);
+  right: 20px;
+  background-color: rgb(240, 240, 240);
+  color: rgb(120, 120, 120);
+}
+
+.file-info {
+  margin-right: 10px;
+}
+
+.file-progress-bar {
+  width: 127px;
+  margin: 0 10px 0 0;
+  position: relative;
+  top: 3px;
+}
+
+.file-remove {
+  float: right;
+  line-height: 25px;
+  color: rgb(150, 150, 150);
+  cursor: pointer;
 }
 
 .chat-submit-container {
