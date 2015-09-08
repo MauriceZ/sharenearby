@@ -55,9 +55,6 @@
 }
 
 .new-msg-notification {
-  float: right;
-  margin-top: -37px;
-  margin-right: 16px;
   border: 1px solid rgb(0, 140, 0);
   color: rgb(0, 120, 0);
   padding: 2px 7px;
@@ -68,8 +65,9 @@
   background-color: rgb(60, 218, 111);
   display: none;
   cursor: pointer;
-  z-index: 100;
-  position: relative;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
 
 .new-msg-notification > .fa-angle-double-down {
@@ -166,6 +164,10 @@
   box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.1);
 
   .vertical-center-block();
+}
+
+.chat-file-input {
+  display: none;
 }
 
 .file-uploading-block {
