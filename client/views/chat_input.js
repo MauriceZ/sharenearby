@@ -15,6 +15,8 @@ Template.chatInput.events = {
   },
 
   'change .file-input': function() {
+    $('.chat-input').focus();
+
     if (!$('.file-input')[0].files.length)
       return;
 
@@ -28,6 +30,7 @@ Template.chatInput.events = {
 
   'click .file-remove': function() {
     fileUpload.cancel();
+    $('.chat-input').focus();
   },
 
   'submit #chat-form': function() {
