@@ -12,7 +12,7 @@ Template.mainChat.onRendered(function() {
               inputSectionHeight = $('.chat-input-section').height();
           
           if (Meteor.utils.isScrolledIntoView($previousNewestPost, inputSectionHeight)) {
-            scrollToBottom();
+            setTimeout(scrollToBottom);
           } else {
             notifyNewMessage();
           }
