@@ -17,8 +17,16 @@ var postFields = {
   },
 
   'body.file': {
-    'type': String,
+    'type': Object,
     'optional': true
+  },
+
+  'body.file.url': {
+    'type': String
+  },
+
+  'body.file.name': {
+    'type': String
   },
 
   userId: {

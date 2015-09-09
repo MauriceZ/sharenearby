@@ -14,14 +14,14 @@
       
                 <div class="chat-body-container">
                   <p class="chat-time">{{ formattedDate }}</p>
-                  {{ #if body.file }}
+                  {{ #with body.file }}
                     <div class="chat-file">
-                      <a class="chat-file-download" target="_blank" href="{{ body.file }}">
+                      <a class="chat-file-download" href="{{ url }}">
                         <i class="fa fa-file-text-o chat-file-download-icon"></i>
-                        <p class="chat-file-download-text">Download</p>
+                        <p class="chat-file-name">{{ name }}</p>
                       </a>
                     </div>
-                  {{ /if }}
+                  {{ /with }}
                   <p class="chat-text">{{{ body.text }}}</p>
                 </div>
               </div>

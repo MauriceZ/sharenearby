@@ -22,7 +22,7 @@ Template.chatInput.events = {
     Session.set('uploadedFileInfo', fileToJSON(uploadedFile));
 
     var formData = new FormData($('.file-input-form')[0]);
-    fileUpload = new FileUpload(formData, '.file-progress-bar', '.chat-file-input');
+    fileUpload = new FileUpload(formData);
     fileUpload.start();
   },
 
@@ -46,10 +46,8 @@ function fileToJSON(file) {
   };
 }
 
-function FileUpload(formData, progressBarClass, fileInputClass) {
+function FileUpload(formData) {
   this.formData = formData
-  this.progressBarClass = progressBarClass;
-  this.fileInputClass = fileInputClass;
 }
 
 FileUpload.prototype.start = function() {
@@ -78,7 +76,7 @@ FileUpload.prototype.start = function() {
 
     success: function(data) {
       self.uploadInfo = data;
-      $(self.fileInputClass).val(data.link);
+      $('.chat-file-url-input').val(data.link);
     }
   });
 };
@@ -98,7 +96,7 @@ FileUpload.prototype.cancel = function() {
 };
 
 FileUpload.prototype.updateProgress = function(newValue) {
-  var $progressBar = $(this.progressBarClass);
+  var $progressBar = $('.file-progress-bar');
   $progressBar.attr('value', newValue);
 
   if (newValue == 1)
