@@ -13,7 +13,7 @@
             <i class="fa fa-file-text"></i>
             <p class="chat-btn-text">File</p>
             <form method="post" class="file-input-form" enctype="multipart/form-data">
-              <input name="file" type="file" class="file-input">
+              <input type="file" name="file" class="file-input">
             </form>
           </label>
 
@@ -22,7 +22,7 @@
 
       <div class="chat-input-container col-md-10">
         <textarea autofocus placeholder="Write your message here" class="chat-input form-control" rows="5" name="body.text" data-schema-key="body.text"></textarea>
-        <input type="hidden" class="chat-file-input" name="body.file" data-schema-key="body.file">
+        <input type="text" class="chat-file-input" name="body.file" data-schema-key="body.file">
         
         {{ #with uploadedFileInfo }}
           <div class="file-uploading-block">

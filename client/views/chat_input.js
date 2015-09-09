@@ -15,8 +15,12 @@ Template.chatInput.events = {
   },
 
   'change .file-input': function() {
+    if (!$('.file-input')[0].files.length)
+      return;
+
     var uploadedFile = $('.file-input')[0].files[0];
     Session.set('uploadedFileInfo', fileToJSON(uploadedFile));
+
     var formData = new FormData($('.file-input-form')[0]);
     fileUpload = new FileUpload(formData, '.file-progress-bar', '.chat-file-input');
     fileUpload.start();
@@ -28,6 +32,8 @@ Template.chatInput.events = {
 
   'submit #chat-form': function() {
     Session.set('uploadedFileInfo', null);
+    $('#chat-form')[0].reset();
+    $('.file-input-form')[0].reset();
   }
 };
 
@@ -50,7 +56,7 @@ FileUpload.prototype.start = function() {
   var self = this;
 
   self.xhr = $.ajax({
-    url: 'https://file.io?expires=1',
+    url: 'https://file.io/',
     type: 'POST',
     data: self.formData,
     dataType: 'json',
