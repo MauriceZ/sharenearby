@@ -1,41 +1,38 @@
 <template name="mainChat">
   <section class="row chat-posts-section">
-    {{ #if posts.count }}
 
-      <div class="chat-posts-container">
+    <div class="chat-posts-container">
 
-          {{ #each posts }}
-            <div class="chat-post-container">
-      
-              <div class="chat-post">
-                <div class="chat-color-container">
-                  <div class="chat-color"></div>
-                </div>
-      
-                <div class="chat-body-container">
-                  <p class="chat-time">{{ formattedDate }}</p>
-                  {{ #with body.file }}
-                    <div class="chat-file">
-                      <a class="chat-file-download" href="{{ url }}">
-                        <i class="fa fa-file-text-o chat-file-download-icon"></i>
-                        <p class="chat-file-name">{{ name }}</p>
-                      </a>
-                    </div>
-                  {{ /with }}
-                  <p class="chat-text">{{{ body.text }}}</p>
-                </div>
+        {{ #each posts }}
+          <div class="chat-post-container">
+    
+            <div class="chat-post">
+              <div class="chat-color-container">
+                <div class="chat-color"></div>
               </div>
-      
+    
+              <div class="chat-body-container">
+                <p class="chat-time">{{ formattedDate }}</p>
+                {{ #if body.file }}
+                  <div class="chat-file">
+                    <a class="chat-file-download" href="{{ body.file.url }}">
+                      <i class="fa fa-file-text-o chat-file-download-icon"></i>
+                      <p class="chat-file-name">{{ body.file.name }}</p>
+                    </a>
+                  </div>
+                {{ /if }}
+                <p class="chat-text">{{{ body.text }}}</p>
+              </div>
             </div>
-          {{ /each }}
+    
+          </div>
+        {{ /each }}
 
-      </div>
+    </div>
 
-    {{ else }}
-
+    {{ #unless posts.count }}
       <div class="chat-posts-empty">Nothing here yet</div>
-
-    {{ /if }}
+    {{ /unless }}
 
     <div class="new-msg-notification">New message <i class="fa fa-angle-double-down"></i></div>
   </section>

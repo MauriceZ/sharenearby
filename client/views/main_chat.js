@@ -23,6 +23,8 @@ Template.mainChat.onRendered(function() {
       }
     }
   });
+
+  defineUIHooks(this);
 });
 
 Template.mainChat.helpers({
@@ -39,8 +41,20 @@ Template.mainChat.helpers({
 Template.mainChat.events = {
   'click .new-msg-notification': function() {
     scrollToBottom();
+  },
+
+  'click .chat-post-container': function(e) {
+    Meteor.call('removePost', this);
   }
 };
+
+function defineUIHooks(template) {
+  template.find('.chat-posts-container')._uihooks = {
+    removeElement: function(node) {
+      $(node).fadeOut();
+    }
+  };
+}
 
 function scrollToBottom() {
   Meteor.utils.scrollToBottom($('.chat-posts-container'));
