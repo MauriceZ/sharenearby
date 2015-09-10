@@ -1,61 +1,41 @@
 <template name="mainChat">
   <section class="row chat-posts-section">
-    {{ #if posts.count }}
 
-      <div class="chat-posts-container">
+    <div class="chat-posts-container">
 
-          {{ #each posts }}
-            <div class="chat-post-container">
-      
-              <div class="chat-post">
-                <div class="chat-color-container">
-                  <div class="chat-color"></div>
-                </div>
-      
-                <div class="chat-body-container">
-                  <p class="chat-time">{{ formattedDate }}</p>
-                  <p class="chat-body">{{{ body }}}</p>
-                </div>
+        {{ #each posts }}
+          <div class="chat-post-container">
+    
+            <div class="chat-post">
+              <div class="chat-color-container">
+                <div class="chat-color"></div>
               </div>
-      
+    
+              <div class="chat-body-container">
+                <p class="chat-time">{{ formattedDate }}</p>
+                {{ #if body.file }}
+                  <div class="chat-file">
+                    <a class="chat-file-download" href="{{ body.file.url }}">
+                      <i class="fa fa-file-text-o chat-file-download-icon"></i>
+                      <p class="chat-file-name">{{ body.file.name }}</p>
+                    </a>
+                  </div>
+                {{ /if }}
+                <p class="chat-text">{{{ body.text }}}</p>
+              </div>
             </div>
-          {{ /each }}
+    
+          </div>
+        {{ /each }}
 
-      </div>
+    </div>
 
-    {{ else }}
-
+    {{ #unless posts.count }}
       <div class="chat-posts-empty">Nothing here yet</div>
+    {{ /unless }}
 
-    {{ /if }}
-  </section>
-  
-  <section class="row chat-input-section">
     <div class="new-msg-notification">New message <i class="fa fa-angle-double-down"></i></div>
-    {{ #autoForm collection="Posts" id="chat-form" type="method" meteormethod="submitPost" }}
-      <div class="chat-btns-container col-md-1">
-        <div class="chat-btn-inner-container">
-
-          <button type="button" class="chat-btn button button-green">
-            <i class="fa fa-unlock-alt chat-btn-icon-lock"></i>
-            <p class="chat-btn-text chat-btn-text-password">Password</p>
-          </button>
-
-          <button type="button" class="chat-btn button button-orange">
-            <i class="fa fa-file-text"></i>
-            <p class="chat-btn-text">File</p>
-          </button>
-
-        </div>
-      </div>
-
-      <div class="chat-input-container col-md-10">
-        <textarea autofocus placeholder="Write your message here" class="chat-input form-control" rows="5" name="body" data-schema-key="body"></textarea>
-      </div>
-      
-      <div class="chat-submit-container col-md-1">  
-        <button type="submit" class="chat-submit button button-blue">Send</button>
-      </div>
-    {{ /autoForm }}
   </section>
+
+  {{ > chatInput }}
 </template>

@@ -1,5 +1,32 @@
 var posts;
 
+Template.mainChat.onRendered(function() {
+  scrollToBottom();
+
+  posts.observeChanges({
+    added: function(post) {
+      if (Meteor.subscriptions.posts.ready()) {
+
+        if (!Meteor.recentPostSentByUser) {
+          var $previousNewestPost = $('.chat-post-container').eq(-2),
+              inputSectionHeight = $('.chat-input-section').height();
+          
+          if (Meteor.utils.isScrolledIntoView($previousNewestPost, inputSectionHeight)) {
+            setTimeout(scrollToBottom);
+          } else {
+            notifyNewMessage();
+          }
+        }
+
+        Meteor.recentPostSentByUser = false;
+
+      }
+    }
+  });
+
+  defineUIHooks(this);
+});
+
 Template.mainChat.helpers({
   posts: function() {
     posts = Posts.find();
@@ -16,38 +43,18 @@ Template.mainChat.events = {
     scrollToBottom();
   },
 
-  'keypress .chat-input': function(e) {
-    if (e.keyCode == 13 && !e.ctrlKey) {
-      e.preventDefault();
-      $('#chat-form').submit();
-    }
+  'click .chat-file-download': function(e) {
+    Meteor.call('removePost', this);
   }
 };
 
-Template.mainChat.onRendered(function() {
-  scrollToBottom();
-
-  posts.observeChanges({
-    added: function(post) {
-      if (Meteor.subscriptions.posts.ready()) {
-
-        if (!Meteor.recentPostSentByUser) {
-          var $previousNewestPost = $('.chat-post-container').eq(-2),
-              inputSectionHeight = $('.chat-input-section').height();
-          
-          if (Meteor.utils.isScrolledIntoView($previousNewestPost, inputSectionHeight)) {
-            scrollToBottom();
-          } else {
-            notifyNewMessage();
-          }
-        }
-
-        Meteor.recentPostSentByUser = false;
-
-      }
+function defineUIHooks(template) {
+  template.find('.chat-posts-container')._uihooks = {
+    removeElement: function(node) {
+      $(node).fadeOut();
     }
-  });
-});
+  };
+}
 
 function scrollToBottom() {
   Meteor.utils.scrollToBottom($('.chat-posts-container'));

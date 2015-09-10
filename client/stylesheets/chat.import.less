@@ -48,16 +48,39 @@
   margin: 0;
 }
 
-.chat-body {
+.chat-file {
+  margin-top: 5px;
+  margin-bottom: 4px;
+  width: 77px;
+}
+
+.chat-file-download {
+  border: 1px solid;
+  display: block;
+  text-align: center;
+  padding: 6px 5px 3px 5px;
+  border-radius: 3px;
+}
+
+.chat-file-download-icon {
+  font-size: 31px;
+}
+
+.chat-file-name {
+  font-size: 12px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chat-text {
   color: rgb(85, 85, 85);
   font-size: 16px;
   margin: 0;
 }
 
 .new-msg-notification {
-  float: right;
-  margin-top: -37px;
-  margin-right: 16px;
   border: 1px solid rgb(0, 140, 0);
   color: rgb(0, 120, 0);
   padding: 2px 7px;
@@ -68,8 +91,9 @@
   background-color: rgb(60, 218, 111);
   display: none;
   cursor: pointer;
-  z-index: 100;
-  position: relative;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
 
 .new-msg-notification > .fa-angle-double-down {
@@ -139,7 +163,12 @@
   margin-top: -4px;
 }
 
+.file-input-form {
+  display: none;
+}
+
 .chat-input-container {
+  position: relative;
   display: inline-block;
   margin: 0;
   height: 100%;
@@ -161,6 +190,41 @@
   box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.1);
 
   .vertical-center-block();
+}
+
+.chat-file-input {
+  display: none;
+}
+
+.file-uploading-block {
+  position: absolute;
+  margin-top: -10px;
+  height: 26px;
+  line-height: 25px;
+  min-width: 160px;
+  padding: 0 5px;
+  border: 1px solid rgb(190, 190, 190);
+  right: 20px;
+  background-color: rgb(240, 240, 240);
+  color: rgb(120, 120, 120);
+}
+
+.file-info {
+  margin-right: 10px;
+}
+
+.file-progress-bar {
+  width: 127px;
+  margin: 0 10px 0 0;
+  position: relative;
+  top: 3px;
+}
+
+.file-remove {
+  float: right;
+  line-height: 25px;
+  color: rgb(150, 150, 150);
+  cursor: pointer;
 }
 
 .chat-submit-container {

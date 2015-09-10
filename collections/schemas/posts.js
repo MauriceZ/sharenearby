@@ -8,7 +8,25 @@ var postFields = {
   },
 
   body: {
-    type: String,
+    type: Object
+  },
+
+  'body.text': {
+    'type': String,
+    'optional': true
+  },
+
+  'body.file': {
+    'type': Object,
+    'optional': true
+  },
+
+  'body.file.url': {
+    'type': String
+  },
+
+  'body.file.name': {
+    'type': String
   },
 
   userId: {
