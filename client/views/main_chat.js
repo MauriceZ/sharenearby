@@ -5,7 +5,7 @@ Template.mainChat.onRendered(function() {
 
   posts.observeChanges({
     added: function(post) {
-      if (Meteor.subscriptions.posts.ready()) {
+      if (Meteor.subscriptions.public_posts.ready() && Meteor.subscriptions.locked_posts.ready()) {
 
         if (!Meteor.recentPostSentByUser) {
           var $previousNewestPost = $('.chat-post-container').eq(-2),
@@ -29,7 +29,7 @@ Template.mainChat.onRendered(function() {
 
 Template.mainChat.helpers({
   posts: function() {
-    posts = Posts.find();
+    posts = Posts.find({}, { sort: { createdAt: 1 } });
     return posts;
   },
 
