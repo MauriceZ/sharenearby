@@ -43,7 +43,7 @@ Template.mainChat.events = {
     scrollToBottom();
   },
 
-  'click .chat-post-container': function(e) {
+  'click .chat-file-download': function(e) {
     Meteor.call('removePost', this);
   }
 };
