@@ -45,6 +45,10 @@ Template.mainChat.events = {
 
   'click .chat-file-download': function(e) {
     Meteor.call('removePost', this);
+  },
+
+  'submit .chat-password-form': function(e) {
+    e.preventDefault();
   }
 };
 

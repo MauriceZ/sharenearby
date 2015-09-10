@@ -48,27 +48,69 @@
   margin: 0;
 }
 
-.chat-file {
+.chat-content-placeholder {
   margin-top: 5px;
   margin-bottom: 4px;
-  width: 77px;
-}
-
-.chat-file-download {
   border: 1px solid;
   display: block;
   text-align: center;
   padding: 6px 5px 3px 5px;
   border-radius: 3px;
+  width: 77px;
+  cursor: pointer;
 }
 
-.chat-file-download-icon {
-  font-size: 31px;
+.chat-content-placeholder > .fa {
+  // font-size: 31px;
+}
+
+.chat-content-placeholder > p {
+  font-size: 12px;
+  margin: 0;
+}
+
+.chat-password-form {
+  width: 180px;
+  padding: 0;
+  height: 35px;
+  line-height: 35px;
+}
+
+.chat-password-input {
+  width: ~"calc(100% - 35px)";
+  height: 100%;
+  border-radius: 3px 0 0 3px;
+  border: none;
+  text-align: center;
+}
+
+.chat-password-btn {
+  display: inline-block;
+  font-size: 17px;
+  float: right;
+  border: 0;
+  border-left: 1px solid #000;
+  height: 100%;
+  width: 35px;
+  border-radius: 0 3px 3px 0;
+  background-color: rgb(245, 245, 245);
+  padding: 0;
+}
+
+.chat-password-btn:hover {
+  background-color: rgb(230, 230, 230);
+}
+
+.chat-password-btn:hover > .fa-lock,
+.chat-password-btn > .fa-unlock-alt {
+  display: none;
+}
+
+.chat-password-btn:hover > .fa-unlock-alt {
+  display: inline;
 }
 
 .chat-file-name {
-  font-size: 12px;
-  margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -190,10 +232,6 @@
   box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.1);
 
   .vertical-center-block();
-}
-
-.chat-file-input {
-  display: none;
 }
 
 .file-uploading-block {
