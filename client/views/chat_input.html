@@ -24,8 +24,8 @@
         <textarea autofocus placeholder="Write your message here" class="chat-input form-control" rows="5" name="body.text" data-schema-key="body.text"></textarea>
         
         {{ #with uploadedFileInfo }}
-          <input type="text" class="chat-file-name-input chat-file-input" name="body.file.name" data-schema-key="body.file.name" value="{{ name }}">
-          <input type="text" class="chat-file-url-input chat-file-input" name="body.file.url" data-schema-key="body.file.url">
+          <input type="text" class="chat-file-name-input hidden" name="body.file.name" data-schema-key="body.file.name" value="{{ name }}">
+          <input type="text" class="chat-file-url-input hidden" name="body.file.url" data-schema-key="body.file.url">
 
           <div class="file-uploading-block">
             <span class="file-info">{{ name }}</span>
