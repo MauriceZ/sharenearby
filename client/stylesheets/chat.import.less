@@ -81,7 +81,7 @@
   width: ~"calc(100% - 35px)";
   height: 100%;
   border-radius: 3px 0 0 3px;
-  border: none;
+  border: 0;
   text-align: center;
 }
 
@@ -96,6 +96,17 @@
   border-radius: 0 3px 3px 0;
   background-color: rgb(245, 245, 245);
   padding: 0;
+}
+
+.chat-password-form.has-error,
+.chat-password-form.has-error > .chat-password-input,
+.chat-password-form.has-error > .chat-password-btn {
+  border-color: rgb(255, 0, 0);
+  outline-color: rgb(255, 0, 0);
+}
+
+.chat-password-btn:focus {
+  outline: 0;
 }
 
 .chat-password-btn:hover {

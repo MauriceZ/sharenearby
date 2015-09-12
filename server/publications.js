@@ -5,3 +5,7 @@ Meteor.publish('public_posts', function() {
 Meteor.publish('locked_posts', function() {
   return Posts.find({ ipAddress: this.connection.clientAddress, password: { $exists: true } }, { fields: { createdAt: 1 } });
 });
+
+Meteor.publish('unlocked_post', function(id, password) {
+  return Posts.find({ _id: id, password: password });
+});

@@ -49,8 +49,44 @@ Template.mainChat.events = {
 
   'submit .chat-password-form': function(e) {
     e.preventDefault();
+    var password = e.target.elements.password.value;
+
+    Meteor.subscribe('unlocked_post', this._id, password, function onReady() {
+      if (!unlockedPosts.hasNew() && e.target.className.indexOf('has-error') < 0) { // password is wrong
+        e.target.className += ' has-error';
+      }
+    });
   }
 };
+
+var unlockedPosts = (function() {
+  var oldCount = 0;
+
+  var unlockedPostObj = {
+    oldCount: function() {
+      return oldCount;
+    },
+
+    currentCount: function() {
+      return Posts.find({ body: { $exists: true }, password: { $exists: true } }).count();
+    },
+
+    updateCount: function() {
+      oldCount = this.currentCount();
+    },
+
+    hasNew: function() {
+      if (this.oldCount() < this.currentCount()) {
+        this.updateCount();
+        return true;
+      }
+
+      return false;
+    }
+  };
+
+  return unlockedPostObj;
+})();
 
 function defineUIHooks(template) {
   template.find('.chat-posts-container')._uihooks = {
