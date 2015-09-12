@@ -1,4 +1,4 @@
-.button {
+.button-no-states {
   text-align: center;
   background-color: #f2f2f2;
   background-image: linear-gradient(to bottom, #f2f2f2, #f2f2f2);
@@ -16,6 +16,15 @@
   transition: all 20ms ease-out;
   vertical-align: top;
   outline: none;
+
+  & .fa {
+    color: #bfbfbf;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+}
+
+.button {
+  .button-no-states();
 
   &:hover, &:focus {
     background: #f2f2f2;

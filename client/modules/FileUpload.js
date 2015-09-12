@@ -4,6 +4,7 @@ function FileUpload(formData) {
 
 FileUpload.prototype.start = function() {
   var self = this;
+  Session.set('fileUploading', true);
 
   self.xhr = $.ajax({
     url: 'https://file.io/',
@@ -27,6 +28,8 @@ FileUpload.prototype.start = function() {
     },
 
     success: function(data) {
+      Session.set('fileUploading', false);
+
       self.uploadInfo = data;
       $('.chat-file-url-input').val(data.link);
     }
@@ -35,6 +38,8 @@ FileUpload.prototype.start = function() {
 
 FileUpload.prototype.cancel = function() {
   var self = this;
+
+  Session.set('fileUploading', false);  
 
   if (self.xhr) {
     self.xhr.abort();
@@ -55,14 +60,6 @@ FileUpload.prototype.updateProgress = function(newValue) {
     $progressBar.fadeOut();
   else 
     $progressBar.show();
-};
-
-FileUpload.prototype.isInProgress = function() {
-  var self = this;
-  if (self.xhr)
-    return self.xhr.readyState != 0 && self.xhr.readyState != 4;
-  else
-    return false;
 };
 
 Meteor.modules = { FileUpload: FileUpload };
