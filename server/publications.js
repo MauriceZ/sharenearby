@@ -7,5 +7,10 @@ Meteor.publish('locked_posts', function() {
 });
 
 Meteor.publish('unlocked_post', function(id, password) {
-  return Posts.find({ _id: id, password: password });
+  if (password) {
+    password = SHA256(password);
+    return Posts.find({ _id: id, password: password });
+  }
+
+  return null;
 });
