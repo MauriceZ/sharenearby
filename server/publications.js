@@ -1,3 +1,16 @@
-Meteor.publish('posts', function() {
-  return Posts.find({ ipAddress: this.connection.clientAddress });
+Meteor.publish('public_posts', function() {
+  return Posts.find({ ipAddress: this.connection.clientAddress, password: { $exists: false } }, { fields: { ipAddress: 0 } });
+});
+
+Meteor.publish('locked_posts', function() {
+  return Posts.find({ ipAddress: this.connection.clientAddress, password: { $exists: true } }, { fields: { createdAt: 1 } });
+});
+
+Meteor.publish('unlocked_post', function(id, password) {
+  if (password) {
+    password = SHA256(password);
+    return Posts.find({ _id: id, password: password });
+  }
+
+  return null;
 });

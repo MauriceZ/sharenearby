@@ -29,6 +29,11 @@ var postFields = {
     'type': String
   },
 
+  password: {
+    'type': String,
+    'optional': true
+  },
+
   userId: {
     'type': String,
     'optional': true,

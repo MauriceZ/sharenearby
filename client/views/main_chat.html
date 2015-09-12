@@ -13,15 +13,27 @@
     
               <div class="chat-body-container">
                 <p class="chat-time">{{ formattedDate }}</p>
-                {{ #if body.file }}
-                  <div class="chat-file">
-                    <a class="chat-file-download" href="{{ body.file.url }}">
-                      <i class="fa fa-file-text-o chat-file-download-icon"></i>
+                {{ #if body }}
+
+                  {{ #if body.file }}
+                    <a class="chat-file-download chat-content-placeholder" href="{{ body.file.url }}">
+                      <i class="fa fa-file-text-o"></i>
                       <p class="chat-file-name">{{ body.file.name }}</p>
                     </a>
-                  </div>
+                  {{ /if }}
+                  <p class="chat-text">{{{ body.text }}}</p>
+
+                {{ else }}
+
+                  <form class="chat-password-form chat-content-placeholder">
+                    <input type="password" name="password" class="chat-password-input" placeholder="Enter password">
+                    <button type="submit" class="chat-password-btn">
+                      <i class="fa fa-lock"></i>
+                      <i class="fa fa-unlock-alt"></i>
+                    </button>
+                  </form>
+
                 {{ /if }}
-                <p class="chat-text">{{{ body.text }}}</p>
               </div>
             </div>
     
