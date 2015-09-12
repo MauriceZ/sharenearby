@@ -2,9 +2,9 @@ function FileUpload(formData) {
   this.formData = formData
 }
 
-FileUpload.prototype.start = function() {
+FileUpload.prototype.start = function(cb) {
   var self = this;
-  Session.set('fileUploading', true);
+  self.isInProgress = true;
 
   self.xhr = $.ajax({
     url: 'https://file.io/',
@@ -28,18 +28,17 @@ FileUpload.prototype.start = function() {
     },
 
     success: function(data) {
-      Session.set('fileUploading', false);
+      self.isInProgress = false;
 
       self.uploadInfo = data;
-      $('.chat-file-url-input').val(data.link);
+      if (cb) cb(data.link);
     }
   });
 };
 
 FileUpload.prototype.cancel = function() {
   var self = this;
-
-  Session.set('fileUploading', false);  
+  self.isInProgress = false;
 
   if (self.xhr) {
     self.xhr.abort();
@@ -47,9 +46,6 @@ FileUpload.prototype.cancel = function() {
     if (self.uploadInfo)
       $.get(self.uploadInfo.link); // This deletes the file on file.io since they can only be downloaded once
   }
-
-  $('.file-input-form')[0].reset();
-  Session.set('uploadedFileInfo', null);
 };
 
 FileUpload.prototype.updateProgress = function(newValue) {

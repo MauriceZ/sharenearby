@@ -27,17 +27,24 @@ Template.chatInput.events = {
 
     if (!$('.file-input')[0].files.length)
       return;
+    else
+      cancelCurFileUpload();
 
     var uploadedFile = $('.file-input')[0].files[0];
     Session.set('uploadedFileInfo', Meteor.utils.fileToJSON(uploadedFile));
 
     var formData = new FormData($('.file-input-form')[0]);
     fileUpload = new Meteor.modules.FileUpload(formData);
-    fileUpload.start();
+
+    Session.set('fileUploading', true);
+    fileUpload.start(function(url) {
+      $('.chat-file-url-input').val(url);
+      Session.set('fileUploading', false);
+    });
   },
 
   'click .file-remove': function() {
-    fileUpload.cancel();
+    cancelCurFileUpload();
     $('.chat-input').focus();
   },
 
@@ -45,6 +52,14 @@ Template.chatInput.events = {
     resetAll();
   }
 };
+
+function cancelCurFileUpload() {
+  if (fileUpload) {
+    fileUpload.cancel();
+    Session.set('fileUploading', false);
+    Session.set('uploadedFileInfo', null);
+  }
+}
 
 function resetAll() {
   Session.set('uploadedFileInfo', null);
