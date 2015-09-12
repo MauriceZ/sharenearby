@@ -29,7 +29,7 @@ Template.chatInput.events = {
       return;
 
     var uploadedFile = $('.file-input')[0].files[0];
-    Session.set('uploadedFileInfo', fileToJSON(uploadedFile));
+    Session.set('uploadedFileInfo', Meteor.utils.fileToJSON(uploadedFile));
 
     var formData = new FormData($('.file-input-form')[0]);
     fileUpload = new Meteor.modules.FileUpload(formData);
@@ -42,19 +42,14 @@ Template.chatInput.events = {
   },
 
   'submit #chat-form': function() {
-    Session.set('uploadedFileInfo', null);
-    $('.chat-add-password-form')[0].reset();
-    $('#chat-form')[0].reset();
-    $('.file-input-form')[0].reset();
+    resetAll();
   }
 };
 
-
-function fileToJSON(file) {
-  return {
-    name: file.name || "",
-    size: file.size ? Math.floor(file.size/1000) : 0,
-    type: file.type || ""
-  };
+function resetAll() {
+  Session.set('uploadedFileInfo', null);
+  Session.set('hasPassword', false);
+  $('.chat-add-password-form')[0].reset();
+  $('#chat-form')[0].reset();
+  $('.file-input-form')[0].reset();
 }
-

@@ -14,5 +14,13 @@ Meteor.utils = {
   scrollToBottom: function($elem) {
     if ($elem[0])
       $elem[0].scrollTop = $elem[0].scrollHeight;
+  },
+
+  fileToJSON: function(file) {
+    return {
+      name: file.name || "",
+      size: file.size ? Math.floor(file.size/1000) : 0,
+      type: file.type || ""
+    };
   }
 };
