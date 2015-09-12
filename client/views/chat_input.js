@@ -5,6 +5,10 @@ Template.chatInput.helpers({
     return Session.get('uploadedFileInfo');
   },
 
+  hasPassword: function() {
+    return Session.get('hasPassword');
+  },
+
   submitDisabled: function() {
     return Session.get('fileUploading');
   }
@@ -39,6 +43,7 @@ Template.chatInput.events = {
 
   'submit #chat-form': function() {
     Session.set('uploadedFileInfo', null);
+    $('.chat-add-password-form')[0].reset();
     $('#chat-form')[0].reset();
     $('.file-input-form')[0].reset();
   }

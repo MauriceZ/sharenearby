@@ -4,8 +4,13 @@
       <div class="chat-btns-container col-md-1">
         <div class="chat-btn-inner-container">
 
-          <button type="button" class="chat-btn button button-green">
-            <i class="fa fa-unlock-alt chat-btn-icon-lock"></i>
+          <button type="button" class="chat-btn button button-green" data-toggle="modal" data-target="#password-modal">
+            {{ #if hasPassword }}
+              <i class="fa fa-lock chat-btn-icon-lock"></i>
+            {{ else }}
+              <i class="fa fa-unlock-alt chat-btn-icon-lock"></i>
+            {{ /if }}
+
             <p class="chat-btn-text chat-btn-text-password">Password</p>
           </button>
 
@@ -22,6 +27,7 @@
 
       <div class="chat-input-container col-md-10">
         <textarea autofocus placeholder="Write your message here" class="chat-input form-control" rows="5" name="body.text" data-schema-key="body.text"></textarea>
+        <input type="text" class="new-post-password-input hidden" name="password" data-schema-key="password">
         
         {{ #with uploadedFileInfo }}
           <input type="text" class="chat-file-name-input hidden" name="body.file.name" data-schema-key="body.file.name" value="{{ name }}">
@@ -42,7 +48,7 @@
         {{ #if submitDisabled }}
           <button type="submit" class="chat-submit button-no-states" disabled>Send</button>
         {{ else }}
-        <button type="submit" class="chat-submit button button-blue">Send</button>
+          <button type="submit" class="chat-submit button button-blue">Send</button>
         {{ /if }}
       </div>
     {{ /autoForm }}
