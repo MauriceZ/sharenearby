@@ -3,6 +3,10 @@ var fileUpload;
 Template.chatInput.helpers({
   uploadedFileInfo: function() {
     return Session.get('uploadedFileInfo');
+  },
+
+  submitDisabled: function() {
+    return Session.get('fileUploading');
   }
 });
 

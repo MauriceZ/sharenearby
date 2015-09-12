@@ -39,7 +39,11 @@
       </div>
       
       <div class="chat-submit-container col-md-1">  
+        {{ #if submitDisabled }}
+          <button type="submit" class="chat-submit button-no-states" disabled>Send</button>
+        {{ else }}
         <button type="submit" class="chat-submit button button-blue">Send</button>
+        {{ /if }}
       </div>
     {{ /autoForm }}
   </section>
