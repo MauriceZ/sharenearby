@@ -1,4 +1,5 @@
-var fileUpload;
+var fileUpload, myDropzone;
+setupDropzone();
 
 Template.chatInput.helpers({
   uploadedFileInfo: function() {
@@ -22,20 +23,28 @@ Template.chatInput.events = {
     }
   },
 
-  'change .file-input': function() {
+  'change .file-input': function(e) {
     $('.chat-input').focus();
 
-    if (!$('.file-input')[0].files.length)
+    if (!e.target.files.length && !myDropzone.files.length)
       return;
     else
       cancelCurFileUpload();
 
-    var uploadedFile = $('.file-input')[0].files[0];
+    var formData = new FormData($('.file-input-form')[0]);
+
+    var uploadedFile = e.target.files[0];
+    $('.file-input-form')[0].reset();
+
+    if (myDropzone.files.length) {
+      uploadedFile = myDropzone.files[0];
+      formData.append('file', uploadedFile);
+      myDropzone.removeAllFiles();
+    }
+
     Session.set('uploadedFileInfo', Meteor.utils.fileToJSON(uploadedFile));
 
-    var formData = new FormData($('.file-input-form')[0]);
     fileUpload = new Meteor.modules.FileUpload(formData);
-    $('.file-input-form')[0].reset();
 
     Session.set('fileUploading', true);
     fileUpload.start(function(url) {
@@ -54,9 +63,28 @@ Template.chatInput.events = {
   }
 };
 
+function setupDropzone() {
+  $(function() {
+    myDropzone = new Dropzone('body', {
+      url: 'not used',
+      clickable: false,
+      autoProcessQueue: false,
+
+      dragover: function() { $('.dropzone-overlay').show(); },
+      dragleave: function() { $('.dropzone-overlay').hide(); },
+      drop: function() { $('.dropzone-overlay').hide(); },
+
+      addedfile: function(file) {
+        $('.file-input').trigger('change');
+      }
+    });
+  });
+}
+
 function cancelCurFileUpload() {
   if (fileUpload) {
     fileUpload.cancel();
+    fileUpload = null;
     Session.set('fileUploading', false);
     Session.set('uploadedFileInfo', null);
   }

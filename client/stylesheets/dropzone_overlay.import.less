@@ -1,0 +1,25 @@
+@light-blue: rgba(0, 0, 255, 0.1);
+@blue: rgb(181, 181, 245);
+
+.dropzone-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: @light-blue;
+  z-index: 200;
+  display: none;
+  outline: 10px dashed @blue;
+  outline-offset: -20px;
+  color: @blue;
+  font-size: 31px;
+  pointer-events: none;
+}
+
+.dropzone-overlay > p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
