@@ -47,9 +47,13 @@ Template.chatInput.events = {
     fileUpload = new Meteor.modules.FileUpload(formData);
 
     Session.set('fileUploading', true);
-    fileUpload.start(function(url) {
-      $('.chat-file-url-input').val(url);
-      Session.set('fileUploading', false);
+    fileUpload.start({
+      success: function(url) {
+        $('.chat-file-url-input').val(url);
+        Session.set('fileUploading', false);
+      },
+
+      error: function() { Session.set('uploadedFileInfo', { error: true }); }
     });
   },
 
@@ -97,4 +101,3 @@ function resetAll() {
   $('#chat-form')[0].reset();
   $('.file-input-form')[0].reset();
 }
-
