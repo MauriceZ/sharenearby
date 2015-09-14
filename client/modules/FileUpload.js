@@ -2,7 +2,7 @@ function FileUpload(formData) {
   this.formData = formData
 }
 
-FileUpload.prototype.start = function(cb) {
+FileUpload.prototype.start = function(cbObj) {
   var self = this;
   self.isInProgress = true;
 
@@ -29,9 +29,12 @@ FileUpload.prototype.start = function(cb) {
 
     success: function(data) {
       self.isInProgress = false;
-
       self.uploadInfo = data;
-      if (cb) cb(data.link);
+      if (cbObj && cbObj.success) cbObj.success(data.link);
+    },
+
+    error: function(data) {
+      if (cbObj && cbObj.error) cbObj.error(data.link);
     }
   });
 };
