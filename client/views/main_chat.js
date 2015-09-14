@@ -47,46 +47,37 @@ Template.mainChat.events = {
     Meteor.call('removePost', this);
   },
 
+  'click .chat-password-form > p': function(e) {
+    var $p = $(e.target),
+        $formInput = $p.siblings('.chat-password-input');
+
+    if (!$formInput.is(':visible')) {
+      $p.hide();
+      $formInput.show()
+    }
+
+    $formInput.focus();
+  },
+
   'submit .chat-password-form': function(e) {
     e.preventDefault();
+
     var password = e.target.elements.password.value;
 
-    Meteor.subscribe('unlocked_post', this._id, password, function onReady() {
-      if (!unlockedPosts.hasNew() && e.target.className.indexOf('has-error') < 0) { // password is wrong
-        e.target.className += ' has-error';
+    if (!password) {
+      $(e.target).children('p').trigger('click');
+      return;
+    }
+
+    Meteor.subscribe('unlocked_post', this._id, password, {
+      onStop: function(error) {
+        if (e.target.className.indexOf('has-error') < 0 && error.error == 'wrong_password') {
+          e.target.className += ' has-error';
+        }
       }
     });
   }
 };
-
-var unlockedPosts = (function() {
-  var oldCount = 0;
-
-  var unlockedPostObj = {
-    oldCount: function() {
-      return oldCount;
-    },
-
-    currentCount: function() {
-      return Posts.find({ body: { $exists: true }, password: { $exists: true } }).count();
-    },
-
-    updateCount: function() {
-      oldCount = this.currentCount();
-    },
-
-    hasNew: function() {
-      if (this.oldCount() < this.currentCount()) {
-        this.updateCount();
-        return true;
-      }
-
-      return false;
-    }
-  };
-
-  return unlockedPostObj;
-})();
 
 function defineUIHooks(template) {
   template.find('.chat-posts-container')._uihooks = {

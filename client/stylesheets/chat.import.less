@@ -77,12 +77,23 @@
   border-color: rgb(140, 140, 140);
 }
 
+.chat-password-form > p {
+  width: ~"calc(100% - 35px)";
+  height: 100%;
+  border-radius: 3px 0 0 3px;
+  display: inline-block;
+  margin: 0;
+  float: left;
+  background-color: rgb(245, 245, 245);
+}
+
 .chat-password-input {
   width: ~"calc(100% - 35px)";
   height: 100%;
   border-radius: 3px 0 0 3px;
   border: 0;
   text-align: center;
+  display: none;
 }
 
 .chat-password-btn {
@@ -109,7 +120,8 @@
   outline: 0;
 }
 
-.chat-password-btn:hover {
+.chat-password-form:hover > p,
+.chat-password-form:hover > .chat-password-btn {
   background-color: rgb(230, 230, 230);
 }
 
