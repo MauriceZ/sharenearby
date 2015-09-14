@@ -7,10 +7,14 @@ Meteor.publish('locked_posts', function() {
 });
 
 Meteor.publish('unlocked_post', function(id, password) {
-  if (password) {
-    password = SHA256(password);
-    return Posts.find({ _id: id, password: password });
-  }
+  if (!password)
+    return null;
 
-  return null;
+  password = SHA256(password);
+  var post = Posts.find({ _id: id, password: password });
+
+  if (post.count() == 0)
+    this.error(new Meteor.Error('wrong_password', 'The inputted password is wrong.'));
+  else
+    return post;
 });
