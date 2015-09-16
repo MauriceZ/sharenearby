@@ -1,6 +1,17 @@
 var fileUpload, myDropzone;
 setupDropzone();
 
+AutoForm.hooks({
+  'chat-form': {
+    before: {
+      method: function(post) {
+        post.colorAssignment = ColorAssignments.findOne();
+        return post;
+      }
+    }
+  }
+});
+
 Template.chatInput.helpers({
   uploadedFileInfo: function() {
     return Session.get('uploadedFileInfo');

@@ -2,9 +2,7 @@ var postFields = {
   _id: {
     'type': String,
     'optional': true,
-    'autoform': {
-      omit: true
-    }
+    'autoform': { omit: true }
   },
 
   body: {
@@ -37,25 +35,46 @@ var postFields = {
   userId: {
     'type': String,
     'optional': true,
-    'autoform': {
-      omit: true
-    }
+    'autoform': { omit: true }
   },
 
   ipAddress: {
     'type': String,
     'optional': true,
-    'autoform': {
-      omit: true
-    }
+    'autoform': { omit: true }
+  },
+
+  userColor: {
+    'type': String,
+    'optional': true,
+    'autoform': { omit: true }
+  },
+
+  colorAssignment: {
+    'type': Object,
+    'optional': true,
+    'autoform': { omit: true }
+  },
+
+  'colorAssignment.colorId': {
+    'type': Number,
+    'autoform': { omit: true }
+  },
+
+  'colorAssignment.hexCode': {
+    'type': String,
+    'autoform': { omit: true }
+  },
+
+  'colorAssignment.lastAssignedAt': {
+    'type': Number,
+    'autoform': { omit: true }
   },
 
   createdAt: {
     'type': Date,
     'optional': true,
-    'autoform': {
-      omit: true
-    }
+    'autoform': { omit: true }
   }
 }
 
