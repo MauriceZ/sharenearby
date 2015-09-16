@@ -24,3 +24,12 @@ Template.passwordModal.events = {
     Template.passwordModal.modalHiddenFromSubmit = false;
   }
 };
+
+Template.passwordModal.helpers({
+  fade: function() {
+    if (Meteor.Device.isDesktop())
+      return 'fade';
+    else
+      return '';
+  }
+});
