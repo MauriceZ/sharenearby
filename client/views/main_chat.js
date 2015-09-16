@@ -50,10 +50,12 @@ Template.mainChat.events = {
   'click .chat-password-form > p': function(e) {
     var $p = $(e.target),
         $formInput = $p.siblings('.chat-password-input');
+        $formBtn = $p.siblings('.chat-password-btn');
 
-    if (!$formInput.is(':visible')) {
+    if ($formInput.is(':hidden')) {
       $p.hide();
-      $formInput.show()
+      $formInput.show();
+      $formBtn.show();
     }
 
     $formInput.focus();
