@@ -29,6 +29,7 @@ Meteor.publish('user_color', function(requestedColorId, userColorAssignedAt) {
   function returnColor(colorId) {
     var color = Colors.findOne({ colorId: colorId }, { fields: { _id: 0 } });
     color.lastAssignedAt = now;
+    color.ipAddress = clientIP;
     self.added('color_assignments', color._id, color);
     self.ready();
   }

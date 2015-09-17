@@ -28,7 +28,9 @@
       <div class="chat-input-container col-md-10">
         <textarea autofocus placeholder="Write your message here" class="chat-input form-control" rows="5" name="body.text" data-schema-key="body.text"></textarea>
         <input type="text" class="new-post-password-input hidden" name="password" data-schema-key="password">
-        
+
+        <span class="chat-input-info" data-toggle="popover"><i class="fa fa-info"></i></span>
+
         {{ #with uploadedFileInfo }}
           {{ #unless error }}
 
