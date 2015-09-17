@@ -1,15 +1,19 @@
 var fileUpload, myDropzone;
-setupDropzone();
 
 AutoForm.hooks({
   'chat-form': {
     before: {
       method: function(post) {
         post.colorAssignment = ColorAssignments.findOne();
+        delete post.colorAssignment.ipAddress;
         return post;
       }
     }
   }
+});
+
+Template.chatInput.onRendered(function() {
+  setupDropzone();
 });
 
 Template.chatInput.helpers({
@@ -79,20 +83,18 @@ Template.chatInput.events = {
 };
 
 function setupDropzone() {
-  $(function() {
-    myDropzone = new Dropzone('body', {
-      url: 'not used',
-      clickable: false,
-      autoProcessQueue: false,
+  myDropzone = new Dropzone('body', {
+    url: 'not used',
+    clickable: false,
+    autoProcessQueue: false,
 
-      dragover: function() { $('.dropzone-overlay').show(); },
-      dragleave: function() { $('.dropzone-overlay').hide(); },
-      drop: function() { $('.dropzone-overlay').hide(); },
+    dragover: function() { $('.dropzone-overlay').show(); },
+    dragleave: function() { $('.dropzone-overlay').hide(); },
+    drop: function() { $('.dropzone-overlay').hide(); },
 
-      addedfile: function(file) {
-        $('.file-input').trigger('change');
-      }
-    });
+    addedfile: function(file) {
+      $('.file-input').trigger('change');
+    }
   });
 }
 

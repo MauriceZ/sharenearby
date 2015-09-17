@@ -6,6 +6,13 @@ Meteor.subscriptions = {
     var colorAssignment = ColorAssignments.findOne();
     localStorage.colorId = colorAssignment.colorId;
     localStorage.lastAssignedAt = colorAssignment.lastAssignedAt;
+
+    $('.chat-input-info').popover({
+      html: true,
+      placement: 'top',
+      trigger: 'hover',
+      content: '<div class="chat-info-popover"><h4 class="chat-info-header">IP:</h4><span class="chat-info-ip">' + colorAssignment.ipAddress + '</span><h4 class="chat-info-header">Color:</h4><div class="chat-info-color" style="background-color: ' + colorAssignment.hexCode + '"></div></div>'
+    });
   }),
 };
 

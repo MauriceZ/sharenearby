@@ -71,10 +71,10 @@
   width: 100%;
   font-size: 16px;
   height: @textinput-height !important; // overwrite bootstrap rule
-  padding: 5px 7px;
+  padding: 5px 30px 5px 7px;
   margin: 0;
   resize: none;
-  border-radius: 5px;
+  border-radius: 3px;
   border-color: rgb(190, 190, 190);
   outline: 0;
 
@@ -142,4 +142,44 @@
 
 .chat-submit:disabled {
   cursor: not-allowed;
+}
+
+.chat-input-info {
+  position: absolute;
+  right: 21px;
+  top: 28px;
+  @font-color: rgb(180, 180, 180);
+  border: 1px solid @font-color;
+  color: @font-color;
+  @diameter: 20px;
+  width: @diameter;
+  height: @diameter;
+  border-radius: @diameter;
+  z-index: 200;
+  text-align: center;
+  font-size: 13px;
+  cursor: default;
+}
+
+.chat-input-info:hover {
+  @font-color: rgb(102, 175, 233);
+  border-color: @font-color;
+  color: @font-color;
+}
+
+.chat-info-popover {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.chat-info-header {
+  font-size: 13px;
+  margin: 3px 0 4px 0;
+  color: rgb(100, 100, 100);
+}
+
+.chat-info-color {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto 7px auto;
+  border-radius: 3px;
 }
