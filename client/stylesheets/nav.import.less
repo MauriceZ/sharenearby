@@ -36,3 +36,33 @@
 .nav-link:focus {
   text-decoration: none;
 }
+
+@media (max-width: @viewport-breakpoint-2) {
+  .chat-posts-section {
+    padding-top: 32px;
+  }
+
+  .nav {
+    height: 32px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    text-align: center;
+    border-radius: 0;
+    background-color: rgb(252, 252, 252);
+    box-shadow: 0 0 4px rgba(0,0,0,0.4);
+  }
+
+  .nav-list-item {
+    height: 100%;
+    line-height: 32px;
+    padding: 0;
+  }
+
+  .nav-link {
+    padding: 0 14px 0 14px;
+  }
+
+}
