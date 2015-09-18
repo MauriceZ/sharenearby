@@ -79,6 +79,10 @@ Template.chatInput.events = {
 
   'submit #chat-form': function() {
     resetAll();
+  },
+
+  'click .chat-mobile-file-btn': function() {
+    $('.chat-input-file-btn').trigger('click');
   }
 };
 

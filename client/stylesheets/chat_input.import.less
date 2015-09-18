@@ -1,7 +1,35 @@
+.chat-input-grid(@section-width) {
+  float: left;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: @section-width/12 * 100%
+}
+
+.chat-input-grid-1 {
+  .chat-input-grid(1);
+}
+
+.chat-input-grid-10 {
+  .chat-input-grid(10);
+}
+
+.chat-input-section {
+  height: @input-section-height;
+}
+
+.chat-mobile-btn:active {
+  background-color: rgb(214, 214, 214);
+}
+
+.chat-mobile-btn:first-child {
+  border-right: 1px solid rgb(210, 210, 210);
+}
 
 #chat-form {
   width: 100%;
-  height: 170px;
+  height: 100%;
+  padding-top: 22px;
+  padding-bottom: 22px;
   margin: 0;
 
   outline: 1px solid rgb(210, 210, 210);
@@ -29,19 +57,21 @@
 
 .chat-btn-inner-container {
   .vertical-center-block();
+  height: ~"calc(100% - 2px)";
 }
-
-@textinput-height: 126px;
-@button-separation: 10px;
 
 .chat-btn {
   width: 100%;
-  height: @textinput-height/2 + 4px - @button-separation;
+  height: ~"calc(50% - 5px)";
   font-size: 13px;
 }
 
 .chat-btn:first-child {
-  margin-bottom: @button-separation;
+  margin-bottom: 10px;
+}
+
+.chat-input-file-btn {
+  margin: 0;
 }
 
 .chat-btn .fa {
@@ -70,7 +100,7 @@
 .chat-input {
   width: 100%;
   font-size: 16px;
-  height: @textinput-height !important; // overwrite bootstrap rule
+  height: 100% !important;
   padding: 5px 30px 5px 7px;
   margin: 0;
   resize: none;
@@ -82,7 +112,7 @@
   -moz-box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.1);
   box-shadow: inset 0px 0px 3px 0px rgba(0,0,0,0.1);
 
-  .vertical-center-block();
+  // .vertical-center-block();
 }
 
 .chat-input:focus {
@@ -98,6 +128,7 @@
   padding: 0 5px;
   border: 1px solid rgb(190, 190, 190);
   right: 20px;
+  bottom: 6px;
   background-color: rgb(240, 240, 240);
   color: rgb(120, 120, 120);
 }
@@ -135,7 +166,7 @@
 
 .chat-submit {
   .vertical-center-block();
-  height: @textinput-height - 2;
+  height: ~"calc(100% - 2px)";
   width: 100%;
   font-size: 18px;
 }
@@ -147,7 +178,7 @@
 .chat-input-info {
   position: absolute;
   right: 21px;
-  top: 28px;
+  top: 6px;
   @font-color: rgb(180, 180, 180);
   border: 1px solid @font-color;
   color: @font-color;
@@ -182,4 +213,69 @@
   height: 30px;
   margin: 0 auto 7px auto;
   border-radius: 3px;
+}
+
+@mobile-btns-height: 45px;
+.chat-mobile-btns-container {
+  height: @mobile-btns-height;
+  display: none;
+}
+
+.chat-mobile-btn {
+  background-color: rgb(244, 244, 244);
+  line-height: 45px;
+  display: inline-block;
+  width: 50%;
+  float: left;
+  text-align: center;
+  border-top: 1px solid rgb(210, 210, 210);
+  border-bottom: 1px solid rgb(210, 210, 210);
+  color: rgb(130, 130, 130);
+}
+
+@min-button-width: 113px;
+@media (max-width: @viewport-breakpoint-1) {
+  .chat-input-grid-1 {
+    width: @min-button-width;
+  }
+
+  .chat-input-grid-10 {
+    width: calc(~"100% - " 2 * @min-button-width);
+  }
+}
+
+@small-input-height: 100px;
+@media (max-width: @viewport-breakpoint-3) {
+  @min-send-button-width: 95px;
+
+  .chat-posts-section {
+    height: calc(~"100vh - " @small-input-height + @mobile-btns-height);
+  }
+
+  .chat-input-section {
+    height: @small-input-height + @mobile-btns-height;
+  }
+
+  .chat-mobile-btns-container {
+    display: block;
+  }  
+
+  #chat-form {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    outline: none;
+    height: @small-input-height;
+  }
+
+  .chat-input-grid-1 {
+    width: @min-send-button-width;
+  }
+
+  .chat-input-grid-10 {
+    width: calc(~"100% - " @min-send-button-width);
+  }
+
+  .chat-btns-container {
+    display: none;
+  }
 }
